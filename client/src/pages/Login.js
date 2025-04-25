@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -20,20 +20,44 @@ const Login = () => {
 
       const { token, role, user } = res.data;
 
+      // Store in localStorage
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
       localStorage.setItem("user", JSON.stringify(user));
 
+      // Debug localStorage
+      console.log("localStorage after login:", {
+        token: localStorage.getItem("token"),
+        role: localStorage.getItem("role"),
+        user: JSON.parse(localStorage.getItem("user")),
+      });
+
       // Redirect to respective dashboard
       if (role === "doctor") {
-        navigate("/doctor/dashboard");
+        console.log("Navigating to doctor dashboard");
+        navigate("/doctor/dashboard", { replace: true });
       } else {
-        navigate("/patient/dashboard");
+        console.log("Navigating to patient dashboard");
+        navigate("/patient/dashboard", { replace: true });
       }
     } catch (error) {
+      console.error("Login error:", error);
       setErr(error.response?.data?.message || "Login failed");
     }
   };
+
+  // Debug navigation issues
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      console.log("User found in localStorage on render:", user);
+      if (user.role === "doctor") {
+        navigate("/doctor/dashboard", { replace: true });
+      } else if (user.role === "patient") {
+        navigate("/patient/dashboard", { replace: true });
+      }
+    }
+  }, [navigate]);
 
   return (
     <div className="max-w-md mx-auto mt-10 p-4 border rounded shadow-md">

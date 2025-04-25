@@ -1,11 +1,10 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
-const Doctor = require("../../models/Doctor");
 const Patient = require("../../models/Patient");
+const Doctor = require("../../models/Doctor");
 
-// Common Login Route
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -42,6 +41,7 @@ router.post("/login", async (req, res) => {
         name: user.name,
         email: user.email,
         phone: user.phone,
+        role, // Add role to user object
         ...(role === "doctor" && {
           specialization: user.specialization,
           gender: user.gender,

@@ -1,25 +1,16 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import PatientSignup from "./pages/PatientSignup";
-import DoctorSignup from "./pages/DoctorSignup";
-import Login from "./pages/Login";
-import DoctorDashboard from "./components/DoctorDashboard";
-import PatientDashboard from "./components/PatientDashboard";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import ChatProvider from "./context/ChatContext";
+import AppRoutes from "./AppRoutes";
 
-function App() {
-  const user = JSON.parse(localStorage.getItem("user")); // get from login response
-
+const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup/doctor" element={<DoctorSignup />} />
-        <Route path="/signup/patient" element={<PatientSignup />} />
-        <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
-        <Route path="/patient/dashboard" element={<PatientDashboard />} />
-
-      </Routes>
-    </BrowserRouter>
+    <ChatProvider>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </ChatProvider>
   );
-}
+};
 
 export default App;
