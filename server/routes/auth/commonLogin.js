@@ -9,6 +9,11 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // Validate input
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
+
     let user = await Patient.findOne({ email });
     let role = "patient";
 
@@ -29,7 +34,7 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign(
       { id: user._id, name: user.name, email: user.email, role },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: process.env.JWT_EXPIRES_IN || "1h" }
     );
 
     res.json({
@@ -41,18 +46,24 @@ router.post("/login", async (req, res) => {
         name: user.name,
         email: user.email,
         phone: user.phone,
-        role, // Add role to user object
+        gender: user.gender,
+        role,
         ...(role === "doctor" && {
           specialization: user.specialization,
-          gender: user.gender,
-          age: user.age,
+          licenseNumber: user.licenseNumber,
+          issuingAuthority: user.issuingAuthority,
+          yearsOfExperience: user.yearsOfExperience
         }),
         ...(role === "patient" && {
-          location: user.location,
-          gender: user.gender,
-          age: user.age,
-        }),
-      },
+          dateOfBirth: user.dateOfBirth,
+          address: user.address,
+          height: user.height,
+          weight: user.weight,
+          bloodGroup: user.bloodGroup,
+          medicalConditions: user.medicalConditions,
+          emergencyContact: user.emergencyContact
+        })
+      }
     });
   } catch (error) {
     console.error("Login error:", error);
