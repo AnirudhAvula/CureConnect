@@ -1,0 +1,29 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# dotenv environment variables
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build directories
+/dist
+/build
+
+# IDE files
+.vscode/
+.idea/
+
+# Coverage reports
+coverage/
+
+# React-specific
+client/node_modules/
+client/build/
