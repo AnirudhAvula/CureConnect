@@ -1,0 +1,244 @@
+/* Custom styles to match CureConnect design */
+.hero-bg {
+    background: linear-gradient(to right, #3b82f6, #10b981);
+}
+
+.feature-card {
+    background: linear-gradient(145deg, #ffffff, #f9fafb);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+}
+
+/* Ensure Inter font is applied globally */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Mobile menu animation */
+.nav-links {
+    transition: all 0.3s ease;
+}
+
+/* Focus states for accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Custom scrollbar for modern look */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+/* Login page styles */
+.login-container {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background: linear-gradient(145deg, #ffffff, #f9fafb);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.6s ease-out;
+}
+
+.login-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: -0.025em;
+}
+
+.login-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.login-form button {
+    width: 100%;
+    background: linear-gradient(135deg, #3b82f6, #10b981);
+    color: white;
+    padding: 0.875rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.signup-description {
+    margin-top: 2.5rem;
+    text-align: center;
+    color: #4b5563;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.signup-links {
+    margin-top: 1.25rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.signup-links a {
+    color: #3b82f6;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.signup-links a:hover {
+    color: #1e40af;
+}
+
+/* Features page styles */
+.features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+}
+
+.features-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: -0.025em;
+}
+
+.features-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+/* About page styles */
+.about-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.05rem; /* Minimized gap for mobile */
+}
+
+@media (min-width: 768px) {
+    .about-section {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.1rem; /* Minimized gap for desktop */
+    }
+}
+
+.about-content {
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.about-content p {
+    margin-bottom: 1rem;
+}
+
+.about-image {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .login-container,
+    .features-container {
+        padding: 1.5rem;
+    }
+
+    .login-title,
+    .features-title,
+    .about-title {
+        font-size: 1.75rem;
+    }
+
+    .signup-links {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .features-grid {
+        gap: 1.5rem;
+    }
+
+    .about-image {
+        max-width: 100%;
+        margin-bottom: 0; /* Controlled by .about-section gap */
+    }
+}
